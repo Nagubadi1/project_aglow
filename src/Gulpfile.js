@@ -1,18 +1,11 @@
 const gulp = require('gulp');
-const sass = require('gulp-sass')(require('sass'))
 const sourcemaps = require('gulp-sourcemaps')
-const cleanCSS = require('gulp-clean-css')
 const browserSync = require('browser-sync').create();
 
 gulp.task('html', () => {
     return gulp.src('src/*.html')
         .pipe(gulp.dest('dist'));
 });
-
-gulp.task('fonts', () => {
-    return gulp.src('src/fonts/*.{woff,woff2}')
-        .pipe(gulp.dest('dist/fonts'));
-})
 
 gulp.task('sass', () => {
     return gulp.src('src/scss/**/*.sass')
