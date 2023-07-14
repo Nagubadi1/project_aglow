@@ -21,16 +21,6 @@ gulp.task('sass', () => {
         .pipe(browserSync.stream());
 });
 
-gulp.task('img', () => {
-    return gulp.src('src/img/*')
-        .pipe(gulp.dest('dist/img'));
-});
-
-gulp.task('data', () => {
-    return gulp.src('src/data/*.json')
-        .pipe(gulp.dest('dist/data'));
-});
-
 
 
 gulp.task('watch', () => {
@@ -47,5 +37,6 @@ gulp.task('watch', () => {
     gulp.watch('src/data/*.json', gulp.series('data')).on('change', browserSync.reload);
 
 });
+
 
 gulp.task('default', gulp.series('html', 'fonts', 'sass', 'img', 'data', 'js', 'watch'));
