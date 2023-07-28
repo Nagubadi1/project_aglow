@@ -1,84 +1,73 @@
-// let backgroundImage;
-// let numParticles = 50;
-// let particles = [];
-
-// function preload() {
-//   backgroundImage = loadImage('../img/home_overlay.png'); 
-// }
-
-// function setup() {
-//   let canvas = createCanvas(600, 330);
-//   canvas.parent('image');
-//   for (let i = 0; i < numParticles; i++) {
-//     particles.push(new Particle());
-//   }
-// }
-
-// function draw() {
-//   image(backgroundImage, 0, 0, width, height);
-
-//   for (let particle of particles) {
-//     particle.update();
-//     particle.show();
-//   }
-// }
+/**
+ * 
+ * Great start Abhi,
+ * Looking at this we get light appearing at a random point on the tree everytime!
+ * I can see you have used bounds lightX and lightY to keep it in the tree
+ * 
+ * I have some challenges below that could extend this script in different directions
+ * 
+ * The main goal here is to animate the lights
+ * 
+ * The challenges I am setting out below are tough but will turn this light script into an object-oriented solution which is a great way to solve a whole host of problems further down the line
+ * and make scripts easier to extend
+ * 
+ */
 
 
-// class Particle {
-//   constructor() {
-//     this.colors = ['#00cf52', '#FFFFFF', '#00df96', '#FFFFFF'];
-//     this.color = color(random(this.colors));
-//     this.alpha = random(50, 200); 
-//     this.fadeSpeed = random(2, 3); 
-//     this.fadeDirection = 1; 
-//     this.fadeDelay = random(100); 
-//     this.radius = 1; 
-//     this.pulseFactor = random(3, 5); 
-//     this.timeOffset = random(100); 
-//     this.resetPosition(); 
-//   }
-
-//   update() {
-//     if (frameCount > this.fadeDelay) {
-//       this.alpha += this.fadeSpeed * this.fadeDirection;
-//       this.alpha = constrain(this.alpha, 0, 255);
-//     }
-
-//     if (this.alpha <= 0 || this.alpha >= 255) {
-//       this.fadeDirection *= -1;
-//       if (this.alpha <= 0) {
-//         this.resetPosition();
-//       }
-//     }
-//   }
-
-//   resetPosition() {
-//     this.x = random(width);
-//     this.y = random(height);
-//     this.alpha = random(100, 200); 
-//     this.fadeDirection = 1;
-//     this.fadeDelay = frameCount + random(100);
-//   }
-
-//   show() {
-//     let pulse = sin(frameCount * 0.03 * this.pulseFactor + this.timeOffset); 
-//     let amplitude = 0.3; 
-//     let radiusWithPulse = this.radius * (1 + pulse * amplitude);
-
-    
-//     let fillColor = color(red(this.color), green(this.color), blue(this.color), this.alpha);
-//     fill(fillColor);
-//     noStroke();
-//     ellipse(this.x, this.y, radiusWithPulse * 2);
-//   }
-// }
-
-// function windowResized() {
-//   resizeCanvas(windowWidth, windowHeight);
-// }
+/**
+ * REFACTORING CHALLENGES
+ * 
+ * Can we take your lights and turn them into a JavaScript Class
+ * 
+ * Once we have this working the same way can we add some methods to the class to change the animation OR add layers of animation
+ * some ideas might be: 
+ *    rotate()
+ *      loop and rotate the diamond around
+ * 
+ *    pulse()
+ *      loop the diamond growing and shrinking
+ * 
+ * 
+ * 
+ * With a class we can also then initiate the object with some starting arguments
+ *    these might be radius, brightness, speed etc
+ * 
+ * Some other thoughts might be can we add x number of diamond shapes offset by an angle
+ *    this would be nice to be progromatically generated i.e two diamonds are 90• offset, three would be 60• etc
+ * 
+ * 
+ * if you get the Light class working with an animated effect can we...
+ * change the effect by passing an argument? 
+ *    this might need seperate classes that inherit from a seperate Effect class that just controls the effect produced around the Lights position,
+ *    lines animating around a radius or circles or triangles
+ *    flickering patterns,
+ *    and any other light effects you can think of
+ * 
+ * If you get stuck at all - work through some of Dan Shiffmans P5 tutorials as he has many many many examples of using classes in JavaScript
+ * 
+ * 
+ */
 
 
+class Light {
+  constructor(/* instance args here */ radius) {
+    this.radius = radius
+  }
 
+  // Methods - feel free to change these where appropriate
+
+  getPosition() {
+
+  }
+
+  offsetAngle() {
+
+  }
+  
+  drawLight() {
+
+  }
+}
 
 
 
