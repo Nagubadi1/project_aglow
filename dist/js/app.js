@@ -81,10 +81,9 @@
 
 
 
-
-const numLights = 6; // Set the number of lights to 6
+const numLights = 10; // Set the number of lights to 6
 const lightPositions = [];
-const shiningSpeed = 0.002; // Adjust the shining speed (smaller values make it slower)
+const shiningSpeed = 0.1; // Adjust the shining speed (higher values make it faster)
 const lightStates = [];
 
 let treeImage;
@@ -117,8 +116,8 @@ function draw() {
     const x = lightPositions[i].x;
     const y = lightPositions[i].y;
 
-    // Update shining effect
-    lightStates[i] = (lightStates[i] + sin(frameCount * shiningSpeed) * 15) % 255; // Increase brightness
+    // Update shining effect with a random factor to create twinkling effect
+    lightStates[i] = (lightStates[i] + random(-10, 10)) % 255;
 
     // Draw shining effect (diamond shape) with lowered opacity on edges
     const radius = 15; // Base radius of the diamond shape
@@ -140,6 +139,6 @@ function draw() {
 
     // Draw base light
     fill(255);
-    ellipse(x, y, 10, 10);
+    ellipse(x, y, 6, 6);
   }
 }
