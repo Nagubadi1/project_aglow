@@ -114,7 +114,7 @@ class Light {
   }
 }
 
-const numLights = 10; // Set the number of lights to 10
+const numLights = 15; // Set the number of lights to 10
 const lightPositions = [];
 let christmasLights = [];
 
@@ -127,14 +127,37 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // Random light positions within the specified coordinate boundaries
+  // Generate non-overlapping light positions within the specified coordinate boundaries
   for (let i = 0; i < numLights; i++) {
-    const lightX = random(width * 0.603227, width * 0.453227);
-    const lightY = random(height * 0.430939, height * 0.730939);
-    const lightX1 = random(width * )
+    let isOverlapping = true;
+    let lightX, lightY;
+
+    while (isOverlapping) {
+      isOverlapping = false;
+
+      // lightX = a number between a min and max on the X axis
+      lightX = random(width * 0.575227, width * 0.463227);
+      lightY = random(height * 0.130939, height * 0.730939);
+
+      for (let j = 0; j < lightPositions.length; j++) {
+        const distance = dist(lightX, lightY, lightPositions[j].x, lightPositions[j].y);
+        if (distance < 30) { // Adjust the distance threshold as needed
+          isOverlapping = true;
+          break;
+        }
+      }
+    }
+
     lightPositions.push(createVector(lightX, lightY));
     christmasLights.push(new Light(lightX, lightY, 15)); // Radius set to 15
   }
+
+
+ 
+
+
+
+
 }
 
 function draw() {
@@ -148,5 +171,23 @@ function draw() {
     light.pulse();
     light.drawLight();
   }
+
+  // t coords
+  let x1 = width * 0.51
+  let y1 = height * 0.1
+  let x2 = width * 0.39
+  let y2 = height * 0.8
+  let x3 = width * 0.6
+  let y3 = height * 0.8
+
+  // Draws triangle
+  push()
+  stroke(255,0,0)
+  noFill()
+  triangle(x1,y1,x2,y2,x3,y3)
+  pop()
+
+  fill(0,255,0)
+  ellipse(mouseX, mouseY, 15)
 }
 
