@@ -61,7 +61,7 @@ class Light {
     this.rotationSpeed = 0.005; // Rotation speed of the diamond
     this.pulseSpeed = 0.05; // Speed of the diamond pulsing animation
     this.baseRadius = radius;
-    this.lensFlareOpacity = 50; // Opacity of the lens flare
+    this.lensFlareOpacity = 100; // Opacity of the lens flare
     this.lensFlareSize = 5; // Initial size of the lens flare
     this.lensFlareSpacing = 5; // Spacing between lens flare ellipses
     this.lensFlareCount = 5; // Number of lens flare ellipses
@@ -131,6 +131,7 @@ function setup() {
   for (let i = 0; i < numLights; i++) {
     const lightX = random(width * 0.603227, width * 0.453227);
     const lightY = random(height * 0.430939, height * 0.730939);
+    const lightX1 = random(width * )
     lightPositions.push(createVector(lightX, lightY));
     christmasLights.push(new Light(lightX, lightY, 15)); // Radius set to 15
   }
