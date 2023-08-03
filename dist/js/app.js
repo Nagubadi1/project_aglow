@@ -45,9 +45,7 @@
  * 
  * If you get stuck at all - work through some of Dan Shiffmans P5 tutorials as he has many many many examples of using classes in JavaScript
  * 
- * 
- */
-
+*/
 
 
 class Light {
@@ -152,18 +150,14 @@ function setup() {
     christmasLights.push(new Light(lightX, lightY, 15)); // Radius set to 15
   }
 
-
- 
-
-
-
-
 }
 
 function draw() {
   background(0);
   imageMode(CORNER);
   image(treeImage, 0, 0, width, height);
+
+  let isInsideTriangle = pointInTriangle(mouseX, mouseY, x1, y1, x2, y2, x3, y3);
 
   for (let light of christmasLights) {
     light.update();
@@ -181,13 +175,24 @@ function draw() {
   let y3 = height * 0.8
 
   // Draws triangle
-  push()
-  stroke(255,0,0)
-  noFill()
-  triangle(x1,y1,x2,y2,x3,y3)
-  pop()
+  push();
+  stroke(255,0,0);
+  noFill();
+  triangle(x1,y1,x2,y2,x3,y3);
+  pop();
 
-  fill(0,255,0)
-  ellipse(mouseX, mouseY, 15)
+if (isInsideTriangle) {
+  fill(255, 0, 0);
+} else {
+  fill(0, 255, 0);
+}
+ellipse(mouseX, mouseY, 15);
+}
+function pointInTriangle(x, y, x1, y1, x2, y2, x3, y3) {
+  const denominator = (y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3);
+  const a = ((y2 - y3) * (x - x3) + (x3 - x2) * (y - y3)) / denominator;
+  const b = ((y3 - y1) * (x - x3) + (x1 - x3) * (y - y3)) / denominator;
+  const c = 1 - a - b;
+  return a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1;
 }
 
